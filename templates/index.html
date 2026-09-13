@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>PredictSite | AI Health Prediction</title>
+
+
+    <!-- BOOTSTRAP -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- CUSTOM CSS -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+
+    <!-- =================================================
+         PREDICTSITE UI ADDITIONS
+    ================================================== -->
+
+    <style>
+
+        /* =================================================
+           SYMPTOM SELECTION CARD
+        ================================================== */
+
+        .symptom-selection-card {
+
+            width: 100%;
+
+            border: 3px solid #2B345B;
+
+            background: rgba(15, 23, 42, 0.88);
+
+            padding: 26px;
+
+            box-shadow:
+                6px 6px 0 rgba(43, 52, 91, 0.7);
+
+        }
+
+
+        /* =================================================
+           SCROLLABLE SYMPTOM BOX
+        ================================================== */
+
+        .symptom-scroll-box {
+
+            width: 100%;
+
+            height: 390px;
+
+            overflow-y: auto;
+
+            overflow-x: hidden;
+
+            border: 3px solid #2B345B;
+
+            background: rgba(7, 11, 27, 0.78);
+
+            padding: 12px;
+
+            scrollbar-width: auto;
+
+            scrollbar-color:
+                #3B82F6
+                #0F172A;
+
+        }
+
+
+        /* =================================================
+           SCROLLBAR
+        ================================================== */
+
+        .symptom-scroll-box::-webkit-scrollbar {
+
+            width: 14px;
+
+        }
+
+
+        .symptom-scroll-box::-webkit-scrollbar-track {
+
+            background: #0F172A;
+
+            border-left: 2px solid #2B345B;
+
+        }
+
+
+        .symptom-scroll-box::-webkit-scrollbar-thumb {
+
+            background: #3B82F6;
+
+            border: 3px solid #0F172A;
+
+        }
+
+
+        .symptom-scroll-box::-webkit-scrollbar-thumb:hover {
+
+            background: #22D3EE;
+
+        }
+
+
+        /* =================================================
+           SYMPTOM GRID
+        ================================================== */
+
+        .symptom-scroll-box .symptoms-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 12px;
+
+            width: 100%;
+
+        }
+
+
+        .symptom-scroll-box .symptom-card {
+
+            min-height: 58px;
+
+            margin: 0;
+
+        }
+
+
+        /* =================================================
+           SCROLL HINT
+        ================================================== */
+
+        .scroll-hint {
+
+            text-align: center;
+
+            margin-top: 10px;
+
+            font-family: "VT323", monospace;
+
+            font-size: 20px;
+
+            letter-spacing: 1px;
+
+            color: #94A3B8;
+
+        }
+
+
+        .scroll-hint span {
+
+            color: #22D3EE;
+
+        }
+
+
+        /* =================================================
+           SELECTED SYMPTOMS PREVIEW
+        ================================================== */
+
+        .selected-preview {
+
+            margin-top: 18px;
+
+            border: 3px solid #2B345B;
+
+            background: rgba(7, 11, 27, 0.85);
+
+            padding: 16px 18px;
+
+            box-shadow:
+                4px 4px 0 rgba(43, 52, 91, 0.55);
+
+        }
+
+
+        /* =================================================
+           PREVIEW HEADER
+        ================================================== */
+
+        .selected-preview-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .selected-preview-title {
+
+            font-family:
+                "Press Start 2P",
+                monospace;
+
+            font-size: 14px;
+
+            color: #F8FAFC;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        .selected-preview-count {
+
+            min-width: 38px;
+
+            height: 32px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 0 9px;
+
+            border: 2px solid #22D3EE;
+
+            background: #111827;
+
+            color: #22D3EE;
+
+            font-family:
+                "VT323",
+                monospace;
+
+            font-size: 22px;
+
+        }
+
+
+        /* =================================================
+           PREVIEW TAG CONTAINER
+        ================================================== */
+
+        .selected-preview-tags {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 9px;
+
+        }
+
+
+        /* =================================================
+           SELECTED SYMPTOM TAG
+        ================================================== */
+
+        .selected-symptom-tag {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 7px 10px;
+
+            border: 2px solid #22D3EE;
+
+            background: #172033;
+
+            color: #E2E8F0;
+
+            font-family:
+                "VT323",
+                monospace;
+
+            font-size: 19px;
+
+            line-height: 1;
+
+            box-shadow:
+                3px 3px 0 #C23FA8;
+
+        }
+
+
+        /* =================================================
+           REMOVE BUTTON
+        ================================================== */
+
+        .remove-symptom-btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: 22px;
+
+            height: 22px;
+
+            padding: 0;
+
+            border: 2px solid #F472B6;
+
+            background: #C23FA8;
+
+            color: #0F172A;
+
+            font-family:
+                "Press Start 2P",
+                monospace;
+
+            font-size: 10px;
+
+            cursor: pointer;
+
+            line-height: 1;
+
+        }
+
+
+        .remove-symptom-btn:hover {
+
+            background: #22D3EE;
+
+            border-color: #22D3EE;
+
+        }
+
+
+        /* =================================================
+           EMPTY PREVIEW
+        ================================================== */
+
+        .selected-preview-empty {
+
+            font-family:
+                "VT323",
+                monospace;
+
+            font-size: 20px;
+
+            color: #64748B;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        /* =================================================
+           PREDICT AREA
+        ================================================== */
+
+        .predict-area {
+
+            position: static !important;
+
+            left: auto !important;
+
+            right: auto !important;
+
+            bottom: auto !important;
+
+            z-index: auto !important;
+
+            display: flex !important;
+
+            flex-direction: column !important;
+
+            align-items: center !important;
+
+            justify-content: center !important;
+
+            width: 100%;
+
+            margin-top: 28px;
+
+            padding: 0 !important;
+
+            background: transparent !important;
+
+            border: none !important;
+
+            box-shadow: none !important;
+
+            backdrop-filter: none !important;
+
+        }
+
+
+        .predict-area .predict-btn {
+
+            width: min(470px, 90%);
+
+            margin: 0 auto;
+
+        }
+
+
+        .predict-area .predict-note {
+
+            margin-top: 10px;
+
+        }
+
+
+        /* =================================================
+           MOBILE
+        ================================================== */
+
+        @media (max-width: 900px) {
+
+            .symptom-selection-card {
+
+                padding: 20px;
+
+            }
+
+
+            .symptom-scroll-box .symptoms-grid {
+
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .symptom-selection-card {
+
+                padding: 15px;
+
+            }
+
+
+            .symptom-scroll-box {
+
+                height: 360px;
+
+                padding: 8px;
+
+            }
+
+
+            .symptom-scroll-box .symptoms-grid {
+
+                grid-template-columns: 1fr;
+
+                gap: 9px;
+
+            }
+
+
+            .selected-preview {
+
+                padding: 13px;
+
+            }
+
+
+            .selected-preview-title {
+
+                font-size: 11px;
+
+            }
+
+
+            .selected-symptom-tag {
+
+                font-size: 17px;
+
+            }
+
+
+            .scroll-hint {
+
+                font-size: 17px;
+
+            }
+
+
+            .predict-area .predict-btn {
+
+                width: 95%;
+
+            }
+
+        }
+
+
+        @media (max-width: 400px) {
+
+            .selected-preview-header {
+
+                align-items: flex-start;
+
+            }
+
+
+            .selected-preview-title {
+
+                line-height: 1.5;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =================================================
+         NAVBAR
+    ================================================== -->
+
+    <nav class="navbar navbar-expand-lg custom-navbar">
+
+        <div class="container">
+
+
+            <!-- LOGO -->
+
+            <a
+                class="navbar-brand logo"
+                href="/"
+            >
+
+                Predict<span>Site</span>
+
+            </a>
+
+
+            <!-- RIGHT SIDE -->
+
+            <div class="d-flex align-items-center gap-3">
+
+
+                <!-- USER -->
+
+                <span class="nav-text">
+
+                    Welcome, {{ user_name }}
+
+                </span>
+
+
+                <!-- HISTORY -->
+
+                <a
+                    href="/history"
+                    class="history-home-btn"
+                >
+
+                    📜 HISTORY
+
+                </a>
+
+
+                <!-- LOGOUT -->
+
+                <a
+                    href="/logout"
+                    class="history-home-btn"
+                >
+
+                    🚪 LOGOUT
+
+                </a>
+
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =================================================
+         HERO SECTION
+    ================================================== -->
+
+    <section class="hero-section">
+
+        <div class="container">
+
+            <div class="hero-content">
+
+
+                <!-- BADGE -->
+
+                <div class="badge-custom">
+
+                    ✨ Machine Learning Based
+
+                </div>
+
+
+                <!-- HEADING -->
+
+                <h1>
+
+                    Understand Your Symptoms
+
+                    <span>
+                        With AI
+                    </span>
+
+                </h1>
+
+
+                <!-- DESCRIPTION -->
+
+                <p>
+
+                    Select the symptoms you are experiencing and let
+                    PredictSite provide an educational prediction based
+                    on a trained machine learning model.
+
+                </p>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         MAIN SECTION
+    ================================================== -->
+
+    <section class="main-section">
+
+        <div class="container">
+
+
+            <!-- =================================================
+                 FORM
+            ================================================== -->
+
+            <form
+                action="/predict"
+                method="POST"
+                id="symptomForm"
+            >
+
+
+                <!-- =================================================
+                     SYMPTOM SELECTION CARD
+                ================================================== -->
+
+                <div class="symptom-selection-card">
+
+
+                    <!-- =================================================
+                         TOP HEADER
+                    ================================================== -->
+
+                    <div class="top-card">
+
+
+                        <div>
+
+                            <h2>
+
+                                Select Your Symptoms
+
+                            </h2>
+
+
+                            <p>
+
+                                Choose all symptoms that apply to you.
+
+                            </p>
+
+                        </div>
+
+
+                        <!-- SELECTED COUNTER -->
+
+                        <div class="selected-box">
+
+                            <span id="selectedCount">
+
+                                0
+
+                            </span>
+
+
+                            <small>
+
+                                Selected
+
+                            </small>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         SEARCH
+                    ================================================== -->
+
+                    <div class="search-container">
+
+
+                        <div class="search-icon">
+
+                            🔍
+
+                        </div>
+
+
+                        <input
+                            type="text"
+                            id="searchSymptoms"
+                            placeholder="Search symptoms..."
+                            autocomplete="off"
+                        >
+
+
+                        <button
+                            type="button"
+                            id="clearSearch"
+                            class="clear-search"
+                        >
+
+                            ×
+
+                        </button>
+
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         ACTIONS
+                    ================================================== -->
+
+                    <div class="actions-row">
+
+
+                        <span id="resultText">
+
+                            Showing all symptoms
+
+                        </span>
+
+
+                        <button
+                            type="button"
+                            id="clearAll"
+                            class="clear-btn"
+                        >
+
+                            Clear All
+
+                        </button>
+
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         SELECTED SYMPTOMS PREVIEW
+                    ================================================== -->
+
+                    <div
+                        class="selected-preview"
+                        id="selectedPreview"
+                    >
+
+
+                        <div class="selected-preview-header">
+
+
+                            <span class="selected-preview-title">
+
+                                SELECTED SYMPTOMS
+
+                            </span>
+
+
+                            <span
+                                class="selected-preview-count"
+                                id="previewCount"
+                            >
+
+                                0
+
+                            </span>
+
+
+                        </div>
+
+
+                        <div
+                            class="selected-preview-tags"
+                            id="selectedPreviewTags"
+                        >
+
+
+                            <span class="selected-preview-empty">
+
+                                No symptoms selected yet
+
+                            </span>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         SCROLLABLE SYMPTOM BOX
+                    ================================================== -->
+
+                    <div class="symptom-scroll-box">
+
+
+                        <div
+                            class="symptoms-grid"
+                            id="symptomsGrid"
+                        >
+
+
+                            {% for symptom in symptoms %}
+
+
+                            <label
+                                class="symptom-card"
+                                data-name="{{ symptom.name | lower }}"
+                            >
+
+
+                                <input
+                                    type="checkbox"
+                                    name="symptoms"
+                                    value="{{ symptom.value }}"
+                                >
+
+
+                                <div class="check-circle">
+
+                                    ✓
+
+                                </div>
+
+
+                                <span class="symptom-name">
+
+                                    {{ symptom.name }}
+
+                                </span>
+
+
+                            </label>
+
+
+                            {% endfor %}
+
+
+                        </div>
+
+
+
+                        <!-- =================================================
+                             NO RESULTS
+                        ================================================== -->
+
+                        <div
+                            id="noResults"
+                            class="no-results"
+                            style="display: none;"
+                        >
+
+
+                            <div class="no-results-icon">
+
+                                🔍
+
+                            </div>
+
+
+                            <h3>
+
+                                No symptoms found
+
+                            </h3>
+
+
+                            <p>
+
+                                Try searching with a different keyword.
+
+                            </p>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         SCROLL HINT
+                    ================================================== -->
+
+                    <div class="scroll-hint">
+
+                        <span>↕</span>
+
+                        Scroll inside the box to see more symptoms
+
+                        <span>↕</span>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     PREDICT BUTTON
+                ================================================== -->
+
+                <div class="predict-area">
+
+
+                    <button
+                        type="submit"
+                        class="predict-btn"
+                        id="predictBtn"
+                    >
+
+
+                        <span>
+
+                            Predict Condition
+
+                        </span>
+
+
+                        <span class="arrow">
+
+                            →
+
+                        </span>
+
+
+                    </button>
+
+
+                    <p class="predict-note">
+
+                        Select at least one symptom to continue
+
+                    </p>
+
+
+                </div>
+
+
+            </form>
+
+
+
+            <!-- =================================================
+                 HOW IT WORKS
+            ================================================== -->
+
+            <div class="how-section">
+
+
+                <div class="section-heading">
+
+
+                    <span>
+
+                        HOW IT WORKS
+
+                    </span>
+
+
+                    <h2>
+
+                        Three Simple Steps
+
+                    </h2>
+
+
+                </div>
+
+
+
+                <div class="steps-grid">
+
+
+                    <!-- STEP 1 -->
+
+                    <div class="step-card">
+
+
+                        <div class="step-number">
+
+                            01
+
+                        </div>
+
+
+                        <div class="step-icon">
+
+                            🩺
+
+                        </div>
+
+
+                        <h3>
+
+                            Select Symptoms
+
+                        </h3>
+
+
+                        <p>
+
+                            Choose the symptoms that match what
+                            you are experiencing.
+
+                        </p>
+
+
+                    </div>
+
+
+
+                    <!-- STEP 2 -->
+
+                    <div class="step-card">
+
+
+                        <div class="step-number">
+
+                            02
+
+                        </div>
+
+
+                        <div class="step-icon">
+
+                            🤖
+
+                        </div>
+
+
+                        <h3>
+
+                            AI Analysis
+
+                        </h3>
+
+
+                        <p>
+
+                            The trained machine learning model
+                            analyzes your selected symptoms.
+
+                        </p>
+
+
+                    </div>
+
+
+
+                    <!-- STEP 3 -->
+
+                    <div class="step-card">
+
+
+                        <div class="step-number">
+
+                            03
+
+                        </div>
+
+
+                        <div class="step-icon">
+
+                            📊
+
+                        </div>
+
+
+                        <h3>
+
+                            View Result
+
+                        </h3>
+
+
+                        <p>
+
+                            Get an educational prediction along
+                            with useful information.
+
+                        </p>
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 DISCLAIMER
+            ================================================== -->
+
+            <div class="disclaimer">
+
+
+                <div class="disclaimer-icon">
+
+                    ⚠
+
+                </div>
+
+
+                <div>
+
+
+                    <h4>
+
+                        Educational Disclaimer
+
+                    </h4>
+
+
+                    <p>
+
+                        PredictSite is an educational project and
+                        is not a medical diagnosis tool. The results
+                        are generated by a machine learning model and
+                        should not be used as a substitute for advice
+                        from a qualified healthcare professional.
+
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         FOOTER
+    ================================================== -->
+
+    <footer class="footer">
+
+        <div class="container">
+
+
+            <div class="footer-content">
+
+
+                <div>
+
+
+                    <strong>
+
+                        PredictSite
+
+                    </strong>
+
+
+                    <span>
+
+                        Educational AI Health Prediction
+
+                    </span>
+
+
+                </div>
+
+
+                <div>
+
+                    Built with Flask + Machine Learning
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =================================================
+         EXISTING JAVASCRIPT
+    ================================================== -->
+
+    <script
+        src="{{ url_for('static', filename='script.js') }}"
+    ></script>
+
+
+
+    <!-- =================================================
+         SELECTED SYMPTOMS PREVIEW JAVASCRIPT
+    ================================================== -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+
+                const symptomForm =
+                    document.getElementById(
+                        "symptomForm"
+                    );
+
+
+                const previewTags =
+                    document.getElementById(
+                        "selectedPreviewTags"
+                    );
+
+
+                const previewCount =
+                    document.getElementById(
+                        "previewCount"
+                    );
+
+
+                const selectedCount =
+                    document.getElementById(
+                        "selectedCount"
+                    );
+
+
+                const clearAll =
+                    document.getElementById(
+                        "clearAll"
+                    );
+
+
+                if (
+                    !symptomForm ||
+                    !previewTags ||
+                    !previewCount
+                ) {
+
+                    return;
+
+                }
+
+
+                /* =========================================
+                   GET SELECTED CHECKBOXES
+                ========================================== */
+
+                function getSelectedSymptoms() {
+
+                    return Array.from(
+                        symptomForm.querySelectorAll(
+                            'input[name="symptoms"]:checked'
+                        )
+                    );
+
+                }
+
+
+                /* =========================================
+                   UPDATE PREVIEW
+                ========================================== */
+
+                function updateSelectedPreview() {
+
+
+                    const selected =
+                        getSelectedSymptoms();
+
+
+                    /* UPDATE PREVIEW COUNT */
+
+                    previewCount.textContent =
+                        selected.length;
+
+
+                    /* UPDATE MAIN COUNT TOO */
+
+                    if (selectedCount) {
+
+                        selectedCount.textContent =
+                            selected.length;
+
+                    }
+
+
+                    /* CLEAR PREVIOUS TAGS */
+
+                    previewTags.innerHTML = "";
+
+
+                    /* EMPTY STATE */
+
+                    if (selected.length === 0) {
+
+
+                        const emptyMessage =
+                            document.createElement(
+                                "span"
+                            );
+
+
+                        emptyMessage.className =
+                            "selected-preview-empty";
+
+
+                        emptyMessage.textContent =
+                            "No symptoms selected yet";
+
+
+                        previewTags.appendChild(
+                            emptyMessage
+                        );
+
+
+                        return;
+
+                    }
+
+
+                    /* CREATE TAG FOR EACH SYMPTOM */
+
+                    selected.forEach(
+                        function (checkbox) {
+
+
+                            const label =
+                                checkbox.closest(
+                                    ".symptom-card"
+                                );
+
+
+                            let displayName =
+                                checkbox.value;
+
+
+                            if (label) {
+
+
+                                const nameElement =
+                                    label.querySelector(
+                                        ".symptom-name"
+                                    );
+
+
+                                if (nameElement) {
+
+                                    displayName =
+                                        nameElement
+                                        .textContent
+                                        .trim();
+
+                                }
+
+                            }
+
+
+                            /* TAG */
+
+                            const tag =
+                                document.createElement(
+                                    "span"
+                                );
+
+
+                            tag.className =
+                                "selected-symptom-tag";
+
+
+                            tag.dataset.value =
+                                checkbox.value;
+
+
+                            /* NAME */
+
+                            const name =
+                                document.createElement(
+                                    "span"
+                                );
+
+
+                            name.textContent =
+                                displayName;
+
+
+                            /* REMOVE BUTTON */
+
+                            const removeButton =
+                                document.createElement(
+                                    "button"
+                                );
+
+
+                            removeButton.type =
+                                "button";
+
+
+                            removeButton.className =
+                                "remove-symptom-btn";
+
+
+                            removeButton.textContent =
+                                "×";
+
+
+                            removeButton.title =
+                                "Remove " +
+                                displayName;
+
+
+                            removeButton.addEventListener(
+                                "click",
+                                function (event) {
+
+
+                                    event.preventDefault();
+
+                                    event.stopPropagation();
+
+
+                                    checkbox.checked =
+                                        false;
+
+
+                                    checkbox.dispatchEvent(
+                                        new Event(
+                                            "change",
+                                            {
+                                                bubbles: true
+                                            }
+                                        )
+                                    );
+
+
+                                    updateSelectedPreview();
+
+                                }
+                            );
+
+
+                            tag.appendChild(name);
+
+
+                            tag.appendChild(
+                                removeButton
+                            );
+
+
+                            previewTags.appendChild(
+                                tag
+                            );
+
+                        }
+                    );
+
+                }
+
+
+                /* =========================================
+                   CHECKBOX CHANGE
+                ========================================== */
+
+                const checkboxes =
+                    symptomForm.querySelectorAll(
+                        'input[name="symptoms"]'
+                    );
+
+
+                checkboxes.forEach(
+                    function (checkbox) {
+
+
+                        checkbox.addEventListener(
+                            "change",
+                            updateSelectedPreview
+                        );
+
+                    }
+                );
+
+
+                /* =========================================
+                   CLEAR ALL
+                ========================================== */
+
+                if (clearAll) {
+
+
+                    clearAll.addEventListener(
+                        "click",
+                        function () {
+
+
+                            setTimeout(
+                                function () {
+
+                                    updateSelectedPreview();
+
+                                },
+                                50
+                            );
+
+                        }
+                    );
+
+                }
+
+
+                /* =========================================
+                   INITIAL STATE
+                ========================================== */
+
+                updateSelectedPreview();
+
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

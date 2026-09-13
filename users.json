@@ -1,0 +1,7 @@
+{
+    "admin@coet.in": {
+        "name": "admin",
+        "email": "admin@coet.in",
+        "password": "scrypt:32768:8:1$c5J1a7qIEoKE80T2$48c45674a4c8f748421c4f9fc8ee299d6c10f74c463c8b7d69d2936d470afbb718520153367ab3b0db56edaaf026af43253a2d150acf16a20f038aacc59bca96"
+    }
+}

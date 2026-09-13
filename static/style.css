@@ -1,0 +1,1926 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background:
+        linear-gradient(
+            rgba(9, 11, 22, 0.78),
+            rgba(9, 11, 22, 0.88)
+        ),
+        url("background.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+
+    color: #f5f5f5;
+    font-family: "VT323", monospace;
+    font-size: 20px;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* =========================================
+   PIXEL GRID OVER BACKGROUND
+========================================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+
+    background-image:
+        linear-gradient(
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 20px 20px;
+}
+
+::selection {
+    background: #ff4fd8;
+    color: #ffffff;
+}
+
+
+/* =========================================
+   NAVBAR
+========================================= */
+
+.custom-navbar {
+    background: rgba(16, 19, 38, 0.94);
+    border-bottom: 4px solid #252a4a;
+    padding: 18px 0;
+    box-shadow: 0 5px 0 #05060d;
+    backdrop-filter: blur(8px);
+}
+
+.logo {
+    font-family: "Press Start 2P", monospace;
+    font-size: 20px;
+    color: #ffffff !important;
+    text-decoration: none;
+    text-shadow: 3px 3px 0 #ff4fd8;
+}
+
+.logo span {
+    color: #5df2ff;
+    background: none;
+    -webkit-text-fill-color: #5df2ff;
+}
+
+.nav-text {
+    color: #9da4c7;
+    font-size: 19px;
+}
+
+
+/* =========================================
+   HISTORY NAVIGATION
+========================================= */
+
+.history-nav {
+    display: flex;
+    align-items: center;
+}
+
+.history-home-btn {
+    display: inline-block;
+
+    color: #5df2ff;
+    text-decoration: none;
+
+    border: 3px solid #5df2ff;
+
+    background: #0b0e1d;
+
+    padding: 8px 13px;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 9px;
+
+    box-shadow: 3px 3px 0 #ff4fd8;
+
+    transition: 0.12s;
+}
+
+.history-home-btn:hover {
+    color: #090b16;
+
+    background: #5df2ff;
+
+    transform: translate(-2px, -2px);
+
+    box-shadow: 5px 5px 0 #ff4fd8;
+}
+
+
+/* =========================================
+   HERO SECTION
+========================================= */
+
+.hero-section {
+    position: relative;
+    padding: 90px 0 75px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: #5df2ff;
+    top: 70px;
+    left: 12%;
+
+    box-shadow:
+        28px 0 #ff4fd8,
+        0 28px #ffea4f,
+        28px 28px #8cff66;
+}
+
+.hero-section::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: #ff4fd8;
+    right: 15%;
+    top: 140px;
+
+    box-shadow:
+        22px 0 #5df2ff,
+        0 22px #8cff66,
+        22px 22px #ffea4f;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: auto;
+}
+
+.badge-custom {
+    display: inline-block;
+
+    font-family: "Press Start 2P", monospace;
+    font-size: 10px;
+
+    padding: 13px 17px;
+
+    color: #090b16;
+    background: #5df2ff;
+
+    border: 4px solid #ffffff;
+
+    box-shadow: 5px 5px 0 #ff4fd8;
+
+    margin-bottom: 30px;
+}
+
+.hero-content h1 {
+    font-family: "Press Start 2P", monospace;
+    font-size: clamp(30px, 5vw, 55px);
+    line-height: 1.5;
+
+    color: #ffffff;
+
+    margin-bottom: 25px;
+
+    text-shadow: 5px 5px 0 #252a4a;
+}
+
+.hero-content h1 span {
+    display: block;
+
+    color: #ff4fd8;
+    background: none;
+    -webkit-text-fill-color: #ff4fd8;
+
+    text-shadow: 5px 5px 0 #5df2ff;
+}
+
+.hero-content p {
+    max-width: 720px;
+    margin: auto;
+
+    color: #b8bedc;
+
+    font-size: 24px;
+    line-height: 1.35;
+}
+
+
+/* =========================================
+   MAIN SECTION
+========================================= */
+
+.main-section {
+    padding: 20px 0 90px;
+}
+
+
+/* =========================================
+   TOP CARD
+========================================= */
+
+.top-card {
+    background: rgba(21, 24, 43, 0.94);
+
+    border: 4px solid #34395f;
+    border-bottom: none;
+
+    border-radius: 0;
+
+    padding: 28px 30px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    box-shadow: 8px 8px 0 #05060d;
+
+    backdrop-filter: blur(5px);
+}
+
+.top-card h2 {
+    font-family: "Press Start 2P", monospace;
+
+    color: #ffffff;
+
+    font-size: 18px;
+
+    line-height: 1.6;
+
+    margin-bottom: 8px;
+}
+
+.top-card p {
+    color: #8f96b7;
+
+    font-size: 21px;
+
+    margin: 0;
+}
+
+
+/* =========================================
+   SELECTED COUNT
+========================================= */
+
+.selected-box {
+    min-width: 100px;
+
+    padding: 13px 18px;
+
+    text-align: center;
+
+    background: rgba(11, 14, 29, 0.95);
+
+    border: 4px solid #5df2ff;
+
+    border-radius: 0;
+
+    box-shadow: 4px 4px 0 #ff4fd8;
+}
+
+.selected-box span {
+    display: block;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 22px;
+
+    color: #5df2ff;
+}
+
+.selected-box small {
+    color: #9da4c7;
+
+    font-size: 18px;
+}
+
+
+/* =========================================
+   SEARCH
+========================================= */
+
+.search-container {
+    position: relative;
+
+    background: rgba(21, 24, 43, 0.94);
+
+    border-left: 4px solid #34395f;
+    border-right: 4px solid #34395f;
+
+    padding: 20px 30px;
+
+    backdrop-filter: blur(5px);
+}
+
+.search-container input {
+    width: 100%;
+    height: 55px;
+
+    background: #090b16;
+
+    color: #ffffff;
+
+    border: 4px solid #34395f;
+
+    border-radius: 0;
+
+    padding: 0 55px;
+
+    font-family: "VT323", monospace;
+
+    font-size: 23px;
+
+    outline: none;
+}
+
+.search-container input:focus {
+    border-color: #5df2ff;
+
+    box-shadow: 5px 5px 0 #ff4fd8;
+}
+
+.search-container input::placeholder {
+    color: #646b8d;
+}
+
+.search-icon {
+    position: absolute;
+
+    left: 48px;
+    top: 31px;
+
+    color: #5df2ff;
+
+    font-size: 24px;
+
+    z-index: 2;
+}
+
+.clear-search {
+    position: absolute;
+
+    right: 43px;
+    top: 28px;
+
+    width: 35px;
+    height: 35px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #ff4fd8;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    display: none;
+}
+
+
+/* =========================================
+   ACTION ROW
+========================================= */
+
+.actions-row {
+    background: rgba(21, 24, 43, 0.94);
+
+    border-left: 4px solid #34395f;
+    border-right: 4px solid #34395f;
+
+    padding: 0 30px 20px;
+
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    backdrop-filter: blur(5px);
+}
+
+#resultText {
+    color: #777f9f;
+
+    font-size: 19px;
+}
+
+.clear-btn {
+    background: #0b0e1d;
+
+    border: 3px solid #ff4fd8;
+
+    color: #ff4fd8;
+
+    border-radius: 0;
+
+    padding: 7px 13px;
+
+    font-family: "VT323", monospace;
+
+    font-size: 19px;
+
+    cursor: pointer;
+
+    box-shadow: 3px 3px 0 #5df2ff;
+
+    transition: 0.15s;
+}
+
+.clear-btn:hover {
+    background: #ff4fd8;
+
+    color: #090b16;
+
+    transform: translate(2px, 2px);
+
+    box-shadow: 1px 1px 0 #5df2ff;
+}
+
+
+/* =========================================
+   SYMPTOM GRID
+========================================= */
+
+.symptoms-grid {
+    background: rgba(21, 24, 43, 0.94);
+
+    border: 4px solid #34395f;
+
+    border-top: none;
+
+    padding: 10px 30px 30px;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 12px;
+
+    backdrop-filter: blur(5px);
+}
+
+.symptom-card {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    min-height: 58px;
+
+    padding: 12px 15px;
+
+    background: rgba(16, 19, 38, 0.96);
+
+    border: 3px solid #292f51;
+
+    border-radius: 0;
+
+    cursor: pointer;
+
+    transition: 0.12s;
+}
+
+.symptom-card:hover {
+    border-color: #5df2ff;
+
+    background: #151a35;
+
+    transform: translate(-2px, -2px);
+
+    box-shadow: 4px 4px 0 #ff4fd8;
+}
+
+.symptom-card input {
+    position: absolute;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+.check-circle {
+    width: 22px;
+    height: 22px;
+
+    flex-shrink: 0;
+
+    border: 3px solid #555c80;
+
+    border-radius: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: transparent;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 10px;
+
+    transition: 0.1s;
+}
+
+.symptom-name {
+    color: #b9bfd8;
+
+    font-size: 19px;
+
+    line-height: 1.1;
+}
+
+.symptom-card.selected {
+    background: #19183a;
+
+    border-color: #ff4fd8;
+
+    box-shadow: 4px 4px 0 #5df2ff;
+}
+
+.symptom-card.selected .check-circle {
+    background: #ff4fd8;
+
+    border-color: #ff4fd8;
+
+    color: #ffffff;
+}
+
+.symptom-card.selected .symptom-name {
+    color: #ffffff;
+}
+
+
+/* =========================================
+   NO RESULTS
+========================================= */
+
+.no-results {
+    background: rgba(21, 24, 43, 0.94);
+
+    border: 4px solid #34395f;
+
+    border-top: none;
+
+    text-align: center;
+
+    padding: 60px 20px;
+
+    backdrop-filter: blur(5px);
+}
+
+.no-results-icon {
+    font-size: 40px;
+
+    margin-bottom: 15px;
+}
+
+.no-results h3 {
+    font-family: "Press Start 2P", monospace;
+
+    color: #ffffff;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+}
+
+.no-results p {
+    color: #777f9f;
+
+    font-size: 20px;
+}
+
+
+/* =========================================
+   PREDICT AREA
+========================================= */
+
+.predict-area {
+    background: rgba(21, 24, 43, 0.94);
+
+    border: 4px solid #34395f;
+
+    border-top: none;
+
+    padding: 35px 30px;
+
+    text-align: center;
+
+    box-shadow: 8px 8px 0 #05060d;
+
+    backdrop-filter: blur(5px);
+}
+
+.predict-btn {
+    width: min(100%, 430px);
+
+    min-height: 65px;
+
+    border: 4px solid #ffffff;
+
+    border-radius: 0;
+
+    background: #ff4fd8;
+
+    color: #090b16;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    cursor: pointer;
+
+    box-shadow: 7px 7px 0 #5df2ff;
+
+    transition: 0.12s;
+}
+
+.predict-btn:hover {
+    background: #5df2ff;
+
+    box-shadow: 7px 7px 0 #ff4fd8;
+
+    transform: translate(-2px, -2px);
+}
+
+.predict-btn:active {
+    transform: translate(5px, 5px);
+
+    box-shadow: 2px 2px 0 #ff4fd8;
+}
+
+.predict-btn .arrow {
+    margin-left: 10px;
+
+    font-size: 18px;
+}
+
+.predict-note {
+    margin-top: 18px;
+
+    color: #656d90;
+
+    font-size: 18px;
+}
+
+
+/* =========================================
+   HOW IT WORKS
+========================================= */
+
+.how-section {
+    margin-top: 100px;
+}
+
+.section-heading {
+    text-align: center;
+
+    margin-bottom: 40px;
+}
+
+.section-heading span {
+    color: #5df2ff;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+}
+
+.section-heading h2 {
+    margin-top: 15px;
+
+    color: #ffffff;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 25px;
+
+    line-height: 1.6;
+}
+
+.steps-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+.step-card {
+    position: relative;
+
+    background: rgba(21, 24, 43, 0.94);
+
+    border: 4px solid #34395f;
+
+    border-radius: 0;
+
+    padding: 30px;
+
+    overflow: hidden;
+
+    transition: 0.12s;
+
+    backdrop-filter: blur(5px);
+}
+
+.step-card:hover {
+    border-color: #5df2ff;
+
+    transform: translate(-3px, -3px);
+
+    box-shadow: 6px 6px 0 #ff4fd8;
+}
+
+.step-number {
+    position: absolute;
+
+    top: 12px;
+    right: 15px;
+
+    color: #252a4a;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 22px;
+}
+
+.step-icon {
+    font-size: 35px;
+
+    margin-bottom: 20px;
+}
+
+.step-card h3 {
+    color: #ffffff;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    margin-bottom: 12px;
+}
+
+.step-card p {
+    color: #9299b8;
+
+    font-size: 20px;
+
+    line-height: 1.35;
+
+    margin: 0;
+}
+
+
+/* =========================================
+   DISCLAIMER
+========================================= */
+
+.disclaimer {
+    margin-top: 30px;
+
+    padding: 22px;
+
+    display: flex;
+
+    gap: 16px;
+
+    background: rgba(23, 21, 37, 0.96);
+
+    border: 4px solid #6b5524;
+
+    border-radius: 0;
+
+    box-shadow: 5px 5px 0 #05060d;
+
+    backdrop-filter: blur(5px);
+}
+
+.disclaimer-icon {
+    flex-shrink: 0;
+
+    width: 42px;
+    height: 42px;
+
+    border: 3px solid #ffea4f;
+
+    background: #252016;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    color: #ffea4f;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 13px;
+}
+
+.disclaimer h4 {
+    color: #ffea4f;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+
+    margin-bottom: 8px;
+}
+
+.disclaimer p {
+    color: #9299b8;
+
+    font-size: 18px;
+
+    line-height: 1.45;
+
+    margin: 0;
+}
+
+
+/* =========================================
+   RESULT PAGE
+========================================= */
+
+.result-page {
+    padding: 70px 0 90px;
+}
+
+.result-header {
+    text-align: center;
+
+    margin-bottom: 40px;
+}
+
+.result-header h1 {
+    color: #ffffff;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 32px;
+
+    line-height: 1.6;
+
+    margin: 15px 0;
+}
+
+.result-header p {
+    color: #9299b8;
+
+    font-size: 22px;
+}
+
+.result-card {
+    max-width: 850px;
+
+    margin: auto;
+
+    text-align: center;
+
+    background: rgba(21, 24, 43, 0.96);
+
+    border: 5px solid #ff4fd8;
+
+    border-radius: 0;
+
+    padding: 45px 30px;
+
+    box-shadow: 10px 10px 0 #5df2ff;
+
+    backdrop-filter: blur(6px);
+}
+
+.result-icon {
+    width: 75px;
+    height: 75px;
+
+    margin: auto auto 22px;
+
+    background: #0b0e1d;
+
+    border: 4px solid #5df2ff;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 34px;
+
+    box-shadow: 5px 5px 0 #ff4fd8;
+}
+
+.result-label {
+    color: #5df2ff;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 10px;
+
+    line-height: 1.6;
+}
+
+.result-card h2 {
+    color: #ffffff;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 27px;
+
+    line-height: 1.6;
+
+    margin: 15px 0 35px;
+
+    word-break: break-word;
+}
+
+
+/* =========================================
+   CONFIDENCE
+========================================= */
+
+.confidence-section {
+    max-width: 600px;
+
+    margin: auto;
+
+    text-align: left;
+}
+
+.confidence-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    color: #9299b8;
+
+    font-size: 20px;
+
+    margin-bottom: 10px;
+}
+
+.confidence-header strong {
+    color: #5df2ff;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 12px;
+}
+
+.confidence-bar {
+    width: 100%;
+
+    height: 18px;
+
+    background: #090b16;
+
+    border: 3px solid #34395f;
+
+    border-radius: 0;
+
+    overflow: hidden;
+}
+
+.confidence-fill {
+    height: 100%;
+
+    background: repeating-linear-gradient(
+        90deg,
+        #5df2ff 0px,
+        #5df2ff 10px,
+        #8cff66 10px,
+        #8cff66 20px
+    );
+
+    transition: width 1s ease;
+}
+
+
+/* =========================================
+   INFORMATION CARD
+========================================= */
+
+.information-card,
+.selected-card {
+    max-width: 850px;
+
+    margin: 25px auto 0;
+
+    background: rgba(21, 24, 43, 0.96);
+
+    border: 4px solid #34395f;
+
+    border-radius: 0;
+
+    padding: 28px;
+
+    box-shadow: 5px 5px 0 #05060d;
+
+    backdrop-filter: blur(6px);
+}
+
+.card-heading {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 20px;
+}
+
+.info-icon {
+    width: 44px;
+    height: 44px;
+
+    border: 3px solid #5df2ff;
+
+    background: #0b0e1d;
+
+    color: #5df2ff;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 12px;
+}
+
+.card-heading span {
+    color: #5df2ff;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 9px;
+
+    line-height: 1.6;
+}
+
+.card-heading h3 {
+    color: #ffffff;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+    margin: 4px 0 0;
+}
+
+.information-text {
+    color: #b7bdd6;
+
+    font-size: 21px;
+
+    line-height: 1.5;
+
+    margin: 0;
+}
+
+
+/* =========================================
+   SELECTED SYMPTOM TAGS
+========================================= */
+
+.selected-tags {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+}
+
+.symptom-tag {
+    background: #0b0e1d;
+
+    border: 3px solid #ff4fd8;
+
+    color: #ff9be8;
+
+    border-radius: 0;
+
+    padding: 7px 12px;
+
+    font-size: 18px;
+
+    box-shadow: 3px 3px 0 #5df2ff;
+}
+
+.no-symptoms {
+    color: #646b8d;
+
+    font-size: 19px;
+}
+
+
+/* =========================================
+   RESULT ACTIONS
+========================================= */
+
+.result-actions {
+    text-align: center;
+
+    margin: 35px 0;
+}
+
+.check-again-btn {
+    display: inline-block;
+
+    text-decoration: none;
+
+    color: #090b16;
+
+    background: #5df2ff;
+
+    border: 4px solid #ffffff;
+
+    border-radius: 0;
+
+    padding: 14px 24px;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+
+    box-shadow: 6px 6px 0 #ff4fd8;
+
+    transition: 0.12s;
+}
+
+.check-again-btn:hover {
+    color: #090b16;
+
+    background: #ff4fd8;
+
+    box-shadow: 6px 6px 0 #5df2ff;
+
+    transform: translate(-2px, -2px);
+}
+
+
+/* =========================================
+   PREDICTION HISTORY PAGE
+========================================= */
+
+.history-page {
+    padding: 70px 0 90px;
+}
+
+.history-header {
+    text-align: center;
+
+    margin-bottom: 45px;
+}
+
+.history-header h1 {
+    color: #ffffff;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 30px;
+
+    line-height: 1.6;
+
+    margin: 15px 0;
+    
+    text-shadow: 5px 5px 0 #252a4a;
+}
+
+.history-header p {
+    max-width: 700px;
+
+    margin: auto;
+
+    color: #9299b8;
+
+    font-size: 22px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================
+   HISTORY TOP BAR
+========================================= */
+
+.history-top-bar {
+    max-width: 900px;
+
+    margin: 0 auto 25px;
+
+    padding: 18px 22px;
+
+    background: rgba(21, 24, 43, 0.96);
+
+    border: 4px solid #34395f;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    box-shadow: 5px 5px 0 #05060d;
+
+    backdrop-filter: blur(6px);
+}
+
+.history-count-label {
+    display: block;
+
+    color: #5df2ff;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 8px;
+
+    margin-bottom: 7px;
+}
+
+.history-count {
+    color: #ffffff;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 18px;
+}
+
+
+/* =========================================
+   CLEAR HISTORY BUTTON
+========================================= */
+
+.clear-history-btn {
+    border: 4px solid #ff4fd8;
+
+    background: #0b0e1d;
+
+    color: #ff4fd8;
+
+    padding: 12px 16px;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 9px;
+
+    cursor: pointer;
+
+    box-shadow: 4px 4px 0 #5df2ff;
+
+    transition: 0.12s;
+}
+
+.clear-history-btn:hover {
+    background: #ff4fd8;
+
+    color: #090b16;
+
+    transform: translate(-2px, -2px);
+
+    box-shadow: 6px 6px 0 #5df2ff;
+}
+
+.clear-history-btn:active {
+    transform: translate(3px, 3px);
+
+    box-shadow: 1px 1px 0 #5df2ff;
+}
+
+
+/* =========================================
+   HISTORY LIST
+========================================= */
+
+.history-list {
+    max-width: 900px;
+
+    margin: auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+
+/* =========================================
+   HISTORY CARD
+========================================= */
+
+.history-card {
+    background: rgba(21, 24, 43, 0.96);
+
+    border: 4px solid #34395f;
+
+    padding: 25px;
+
+    box-shadow: 6px 6px 0 #05060d;
+
+    backdrop-filter: blur(6px);
+
+    transition: 0.12s;
+}
+
+.history-card:hover {
+    border-color: #5df2ff;
+
+    transform: translate(-2px, -2px);
+
+    box-shadow: 8px 8px 0 #ff4fd8;
+}
+
+
+/* =========================================
+   HISTORY CARD TOP
+========================================= */
+
+.history-card-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding-bottom: 18px;
+
+    border-bottom: 3px solid #292f51;
+
+    margin-bottom: 20px;
+}
+
+.history-date {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.history-date-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #0b0e1d;
+
+    border: 3px solid #5df2ff;
+
+    font-size: 20px;
+}
+
+.history-date span {
+    display: block;
+
+    color: #ffffff;
+
+    font-size: 21px;
+}
+
+.history-date small {
+    display: block;
+
+    color: #777f9f;
+
+    font-size: 17px;
+
+    margin-top: 2px;
+}
+
+
+/* =========================================
+   HISTORY CONFIDENCE
+========================================= */
+
+.history-confidence {
+    min-width: 75px;
+
+    text-align: center;
+
+    padding: 9px 10px;
+
+    background: #0b0e1d;
+
+    border: 3px solid #8cff66;
+
+    color: #8cff66;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 10px;
+
+    box-shadow: 3px 3px 0 #5df2ff;
+}
+
+
+/* =========================================
+   HISTORY CONDITION
+========================================= */
+
+.history-condition {
+    margin-bottom: 22px;
+}
+
+.history-condition-label,
+.history-symptoms-label {
+    display: block;
+
+    color: #5df2ff;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 8px;
+
+    line-height: 1.6;
+
+    margin-bottom: 8px;
+}
+
+.history-condition h2 {
+    color: #ffffff;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 19px;
+
+    line-height: 1.7;
+
+    margin: 0;
+
+    word-break: break-word;
+}
+
+
+/* =========================================
+   HISTORY SYMPTOMS
+========================================= */
+
+.history-symptoms {
+    padding-top: 18px;
+
+    border-top: 3px solid #292f51;
+}
+
+.history-tags {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 9px;
+}
+
+.history-tag {
+    display: inline-block;
+
+    padding: 6px 10px;
+
+    background: #0b0e1d;
+
+    border: 3px solid #ff4fd8;
+
+    color: #ff9be8;
+
+    font-size: 17px;
+
+    box-shadow: 2px 2px 0 #5df2ff;
+}
+
+.history-no-symptoms {
+    color: #646b8d;
+
+    font-size: 18px;
+}
+
+
+/* =========================================
+   EMPTY HISTORY
+========================================= */
+
+.empty-history {
+    max-width: 700px;
+
+    margin: 20px auto;
+
+    padding: 55px 30px;
+
+    text-align: center;
+
+    background: rgba(21, 24, 43, 0.96);
+
+    border: 5px solid #34395f;
+
+    box-shadow: 9px 9px 0 #05060d;
+
+    backdrop-filter: blur(6px);
+}
+
+.empty-history-icon {
+    width: 75px;
+    height: 75px;
+
+    margin: 0 auto 25px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #0b0e1d;
+
+    border: 4px solid #5df2ff;
+
+    font-size: 35px;
+
+    box-shadow: 5px 5px 0 #ff4fd8;
+}
+
+.empty-history h2 {
+    color: #ffffff;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 18px;
+
+    line-height: 1.7;
+
+    margin-bottom: 15px;
+}
+
+.empty-history p {
+    color: #777f9f;
+
+    font-size: 21px;
+
+    line-height: 1.4;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer {
+    border-top: 4px solid #252a4a;
+
+    padding: 25px 0;
+
+    background: rgba(7, 9, 18, 0.95);
+
+    box-shadow: 0 -5px 0 #05060d;
+
+    backdrop-filter: blur(8px);
+}
+
+.footer-content {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    color: #5d6484;
+
+    font-size: 17px;
+}
+
+.footer strong {
+    display: block;
+
+    color: #ffffff;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 11px;
+
+    margin-bottom: 7px;
+}
+
+.footer span {
+    display: block;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 991px) {
+
+    .symptoms-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .steps-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .history-list,
+    .history-top-bar {
+        max-width: 90%;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 767px) {
+
+    body {
+        background-position: center;
+    }
+
+    .hero-section {
+        padding: 60px 0 45px;
+    }
+
+    .hero-content h1 {
+        font-size: 30px;
+    }
+
+    .nav-text {
+        display: none;
+    }
+
+    .top-card {
+        padding: 22px;
+    }
+
+    .top-card h2 {
+        font-size: 15px;
+    }
+
+    .top-card p {
+        font-size: 18px;
+    }
+
+    .search-container {
+        padding: 15px 20px;
+    }
+
+    .search-icon {
+        left: 38px;
+        top: 28px;
+    }
+
+    .clear-search {
+        right: 30px;
+        top: 24px;
+    }
+
+    .actions-row {
+        padding: 0 20px 15px;
+    }
+
+    .symptoms-grid {
+        grid-template-columns: 1fr;
+
+        padding: 10px 20px 25px;
+    }
+
+    .predict-area {
+        padding: 25px 20px;
+    }
+
+    .result-page {
+        padding: 50px 0;
+    }
+
+    .result-header h1 {
+        font-size: 23px;
+    }
+
+    .result-card {
+        padding: 35px 20px;
+
+        box-shadow: 7px 7px 0 #5df2ff;
+    }
+
+    .result-card h2 {
+        font-size: 21px;
+    }
+
+    .information-card,
+    .selected-card {
+        padding: 22px;
+    }
+
+    /* HISTORY MOBILE */
+
+    .history-page {
+        padding: 50px 0;
+    }
+
+    .history-header h1 {
+        font-size: 22px;
+    }
+
+    .history-header p {
+        font-size: 19px;
+    }
+
+    .history-top-bar {
+        max-width: 100%;
+
+        margin-left: 12px;
+        margin-right: 12px;
+
+        padding: 15px;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 18px;
+    }
+
+    .history-top-bar form {
+        width: 100%;
+    }
+
+    .clear-history-btn {
+        width: 100%;
+
+        font-size: 8px;
+    }
+
+    .history-list {
+        max-width: 100%;
+
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+
+    .history-card {
+        padding: 18px;
+    }
+
+    .history-card-top {
+        align-items: flex-start;
+
+        gap: 12px;
+    }
+
+    .history-date span {
+        font-size: 18px;
+    }
+
+    .history-date small {
+        font-size: 15px;
+    }
+
+    .history-condition h2 {
+        font-size: 15px;
+    }
+
+    .history-confidence {
+        min-width: 65px;
+
+        font-size: 8px;
+    }
+
+    .history-tag {
+        font-size: 15px;
+
+        padding: 5px 8px;
+    }
+
+    .empty-history {
+        margin-left: 12px;
+        margin-right: 12px;
+
+        padding: 40px 20px;
+    }
+
+    .empty-history h2 {
+        font-size: 15px;
+    }
+
+    .empty-history p {
+        font-size: 19px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+
+        gap: 12px;
+
+        text-align: center;
+    }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .logo {
+        font-size: 16px;
+    }
+
+    .hero-content h1 {
+        font-size: 24px;
+    }
+
+    .hero-content p {
+        font-size: 20px;
+    }
+
+    .selected-box {
+        min-width: 70px;
+    }
+
+    .selected-box span {
+        font-size: 16px;
+    }
+
+    .selected-box small {
+        font-size: 15px;
+    }
+
+    .predict-btn {
+        font-size: 10px;
+    }
+
+    .history-home-btn {
+        font-size: 7px;
+
+        padding: 7px 9px;
+    }
+
+    .history-header h1 {
+        font-size: 18px;
+    }
+
+    .history-card-top {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .history-confidence {
+        align-self: flex-start;
+    }
+
+    .history-condition h2 {
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,69 @@
+{
+    "admin@coet.in": [
+        {
+            "prediction": "Drug Reaction",
+            "confidence": 70.5,
+            "symptoms": [
+                "itching",
+                "skin_rash",
+                "stomach_pain"
+            ],
+            "date": "13 September 2026",
+            "time": "02:50 PM"
+        },
+        {
+            "prediction": "GERD",
+            "confidence": 61.0,
+            "symptoms": [
+                "stomach_pain",
+                "acidity",
+                "vomiting"
+            ],
+            "date": "13 September 2026",
+            "time": "02:45 PM"
+        },
+        {
+            "prediction": "Impetigo",
+            "confidence": 47.5,
+            "symptoms": [
+                "skin_rash",
+                "high_fever"
+            ],
+            "date": "13 September 2026",
+            "time": "02:42 PM"
+        },
+        {
+            "prediction": "Bronchial Asthma",
+            "confidence": 15.0,
+            "symptoms": [
+                "mood_swings",
+                "lethargy",
+                "cough"
+            ],
+            "date": "13 September 2026",
+            "time": "02:32 PM"
+        },
+        {
+            "prediction": "AIDS",
+            "confidence": 41.0,
+            "symptoms": [
+                "chills",
+                "acidity",
+                "muscle_wasting"
+            ],
+            "date": "13 September 2026",
+            "time": "02:32 PM"
+        },
+        {
+            "prediction": "GERD",
+            "confidence": 24.5,
+            "symptoms": [
+                "chills",
+                "acidity",
+                "vomiting"
+            ],
+            "date": "13 September 2026",
+            "time": "02:26 PM"
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "admin@coet.in": [
+        {
+            "prediction": "Drug Reaction",
+            "confidence": 70.5,
+            "symptoms": [
+                "itching",
+                "skin_rash",
+                "stomach_pain"
+            ],
+            "feedback": "yes",
+            "date": "13 September 2026",
+            "time": "02:50 PM"
+        }
+    ]
+}
