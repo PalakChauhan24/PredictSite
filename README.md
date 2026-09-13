@@ -100,6 +100,24 @@ Confidence Indicator
   ↓
 Educational Information
 ```
+## 📸 Screenshots
+
+### Main Dashboard
+
+![Main Dashboard](landingpage.png)
+![Symptoms](symptoms.png)
+
+### Login Page
+
+![Login Page](login.png)
+
+### SignUp Page
+
+![SignUp Page](signup.png)
+
+### History Page
+
+![History](history.png)
 🤖 Machine Learning Model
 
 PredictSite uses a Random Forest Classifier trained on a symptom-based dataset.
